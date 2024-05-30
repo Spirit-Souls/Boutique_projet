@@ -6,6 +6,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -17,7 +18,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(
+        max:255,
+        maxMessage: 'L\'email ne peut pas faire plus de {{ limite }} caratères.'
+    )]
+    #[Assert\Email()]
     private ?string $email = null;
 
     /**
@@ -30,22 +37,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank()]
     private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le nom ne peut pas faire plus de {{ limite }} caratères.'
+    )]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le prénom ne peut pas faire plus de {{ limite }} caratères.'
+    )]
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 10, nullable: true)]
+    #[ORM\Column(length: 10, nullable: true)]#[Assert\Length(
+        min:10,
+        max: 10,
+        minMessage: 'Le téléphone doit contenir 10 caractères',
+        maxMessage: 'Le téléphone doit contenir 10 caractères'
+    )]
     private ?string $telephone = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $birthDate = null;
-
-    #[ORM\Column]
-    private ?int $defaultAddressId = null;
 
     public function getId(): ?int
     {
@@ -166,18 +184,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBirthDate(?\DateTimeInterface $birthDate): static
     {
         $this->birthDate = $birthDate;
-
-        return $this;
-    }
-
-    public function getDefaultAddressId(): ?int
-    {
-        return $this->defaultAddressId;
-    }
-
-    public function setDefaultAddressId(int $defaultAddressId): static
-    {
-        $this->defaultAddressId = $defaultAddressId;
 
         return $this;
     }
