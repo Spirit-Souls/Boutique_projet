@@ -2,9 +2,11 @@
 
 namespace App\Controller\Security;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -29,4 +31,26 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    #[Route(path:'/new',name:'app_new',methods:['GET', 'POST'])]
+    public function new(): Response
+    {
+        $user = new User();
+
+        $form = $this->createForm(UserType::class, $user);
+
+        return $this ->render('security/new.html.twig',[
+            'form' => $form,
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
 }
