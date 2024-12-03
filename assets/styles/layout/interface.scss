@@ -1,19 +1,146 @@
-body{
-    background-color: rgb(255, 255, 255);
-    color:rgba(157, 157, 157, 0.756);
+/* Body styling */
+body {
+    background-color: #fff; /* Use hex code for simplicity */
+    color: rgba(0, 0, 0, 0.756);
 }
 
+/* Title styling */
+.title {
+    color: rgb(0, 0, 0);
+    font-size:xx-large;
 
-h1, h2, h3, h4, h5, h6{
-    color: black;
 }
 
-
-.d-flex{
+/* Flexbox utility class */
+.d-flex {
     display: flex;
+    flex-direction: row;
 }
 
-header > a{
-    text-decoration: none ;
+/* Container styling */
+.container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
 }
 
+/* Form styling */
+.form {
+    width: 400px;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Header styling */
+#header {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    background-color: rgb(246, 246, 246);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Title inside header */
+#header .title h1 {
+    margin: 0;
+    font-size: 2rem;
+    margin-left: 50px;
+}
+
+/* Navigation items */
+#header .nav-items {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#header .nav-items li {
+    margin: 0 15px;
+}
+
+#header .nav-items li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+#header .nav-items li a:hover {
+    color: gold;
+}
+
+/* Search container */
+#header .search-container {
+    display: flex;
+    align-items: center;
+}
+
+#header .search-container input[type="search"] {
+    background-color: transparent;
+    width: 700px;
+    padding: 8px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+#header .search-container input[type="search"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#header .search-container button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+#header .search-container button:hover {
+    color: #007bff;
+}
+
+#header .search-container button i {
+    font-size: 1.2rem;
+}
+
+/* Footer styling */
+.footer {
+    background-color: #333;
+    color: white;
+}
+
+.footer-part {
+    width: 250px;
+}
+
+.footer-part a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Miscellaneous styling */
+.jsp {
+    margin-left: 100px;
+    justify-content: space-between;
+    margin-right: 200px;
+}
+
+/* Heading 3 styling */
+h3 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-size: large;
+}
+
+i{
+    width: 30px;
+}
